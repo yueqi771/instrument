@@ -9,13 +9,18 @@ module.exports = {
 
     },
     resolve: {
-        extensions: ['.js', '.json'],
+        extensions: ['.js', '.json', '.ts'],
         alias: {
          
         }
     },
     module: {
         rules: [
+			{
+				test: /\.ts$/,
+				use: 'ts-loader',
+				exclude: /node_modules/,
+			},
             {
 				test: /\.js$/,
 				loader: "babel-loader",
