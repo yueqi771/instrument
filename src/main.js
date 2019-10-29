@@ -1,3 +1,8 @@
+// import 'layui-src'
+// import 'layui-src/dist/css/layui.css';
+
+import  'layui-src';
+
 const snabbdom = require('snabbdom');
 
 
@@ -8,6 +13,13 @@ const patch = snabbdom.init([
     require('snabbdom/modules/eventlisteners').default, // attaches event listeners
 ])
 
+layui.use(['layer', 'form'], function(){
+    var layer = layui.layer
+    ,form = layui.form;
+    
+    layer.msg('Hello World');
+});
+  
 // 创建vnode方法
 const h = require('snabbdom/h').default;
 
