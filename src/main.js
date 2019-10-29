@@ -1,17 +1,7 @@
-// import 'layui-src'
-// import 'layui-src/dist/css/layui.css';
 
-// import  'layui-src';
+import { patch, render } from './core/render'
+import Button_v1 from './components/Button/v1'
 
-const snabbdom = require('snabbdom');
-
-
-const patch = snabbdom.init([
-    require('snabbdom/modules/class').default, // makes it easy to toggle classes
-    require('snabbdom/modules/props').default, // for setting properties on DOM elements
-    require('snabbdom/modules/style').default, // handles styling on elements with support for animations
-    require('snabbdom/modules/eventlisteners').default, // attaches event listeners
-])
 
 // layui.use(['layer', 'form'], function(){
 //     var layer = layui.layer
@@ -23,12 +13,11 @@ const patch = snabbdom.init([
 {/* <button type="button" class="layui-btn">一个标准的按钮</button>
 <a href="http://www.layui.com" class="layui-btn">一个可跳转的按钮</a> */}
   
-// 创建vnode方法
-const h = require('snabbdom/h').default;
 
 const container = document.getElementById('container');
 
-const vnode = h(
+/**
+const vnode = render(
     'div#container.two.classes', 
     {
         on: {
@@ -36,7 +25,7 @@ const vnode = h(
         },
     },
     [
-        h('span', 
+        render('span', 
             {
                 style: {
                     fontWeight: 'bold'
@@ -45,7 +34,7 @@ const vnode = h(
             'this is bold'
         ),
         'this is normal',
-        h(
+        render(
             'p',
             {
                 style: {
@@ -54,7 +43,7 @@ const vnode = h(
                 }
             },
             [
-                h(
+                render(
                     'a',
                     {
                         props: {
@@ -66,7 +55,7 @@ const vnode = h(
                 )
             ]
         ),
-        h(
+        render(
             'button.layui-btn',
             {},
             'layUI button'
@@ -74,8 +63,26 @@ const vnode = h(
     ]
 )
 
-console.log(patch)
+ */
 
+ const vnode = render(
+    'div#container.two.classes', 
+    {
+        on: {
+            click: clickHandle
+        },
+    },
+    [
+        '这里是div',
+        render(
+            Button_v1.html.name,
+            Button_v1.html.attrList,
+            '这里是buttons',
+        ),
+    ],
+    
+    
+ )
 // Patch into empty DOM element – this modifies the DOM as a side effect
 patch(container, vnode);
 

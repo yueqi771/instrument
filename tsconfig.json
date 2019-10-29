@@ -16,4 +16,19 @@
   "exclude": [
     "node_modules",
   ],
+  "paths": {
+    "@/*": [
+        "src/*"
+    ],
+    "@components/*": [
+        "src/components/*"
+    ],
+    "@core/*": [
+        "src/core/*"
+    ],
+    "@utils/*": [
+        "src/utils/*"
+    ],
+   
+},
 }

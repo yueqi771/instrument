@@ -11,7 +11,10 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.json', '.ts'],
         alias: {
-         
+            "@core": path.resolve(__dirname, '../src/core'),
+            "@components": path.resolve(__dirname, '../src/components'),
+            "@utils": path.resolve(__dirname, '../src/utils'),
+
         }
     },
     module: {

@@ -9,5 +9,8 @@ module.exports = {
             "error",
             "interface"
         ]
+    },
+    "ecmaFeatures": {
+        "modules": true
     }
 }
