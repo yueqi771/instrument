@@ -1,7 +1,7 @@
 // import 'layui-src'
 // import 'layui-src/dist/css/layui.css';
 
-import  'layui-src';
+// import  'layui-src';
 
 const snabbdom = require('snabbdom');
 
@@ -13,12 +13,15 @@ const patch = snabbdom.init([
     require('snabbdom/modules/eventlisteners').default, // attaches event listeners
 ])
 
-layui.use(['layer', 'form'], function(){
-    var layer = layui.layer
-    ,form = layui.form;
+// layui.use(['layer', 'form'], function(){
+//     var layer = layui.layer
+//     ,form = layui.form;
     
-    layer.msg('Hello World');
-});
+//     layer.msg('Hello World');
+// });
+
+{/* <button type="button" class="layui-btn">一个标准的按钮</button>
+<a href="http://www.layui.com" class="layui-btn">一个可跳转的按钮</a> */}
   
 // 创建vnode方法
 const h = require('snabbdom/h').default;
@@ -62,6 +65,11 @@ const vnode = h(
                     '测试a链接'
                 )
             ]
+        ),
+        h(
+            'button.layui-btn',
+            {},
+            'layUI button'
         )
     ]
 )
