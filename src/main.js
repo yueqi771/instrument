@@ -12,9 +12,34 @@ import Button_v1 from './components/Button/v1'
 
 {/* <button type="button" class="layui-btn">一个标准的按钮</button>
 <a href="http://www.layui.com" class="layui-btn">一个可跳转的按钮</a> */}
-  
 
 const container = document.getElementById('container');
+
+
+const vnode = render(
+    'div#container.two.classes', 
+    {
+        on: {
+            click: clickHandle
+        },
+    },
+    [
+        '这里是div',
+        render(
+            Button_v1.html.name,
+            Button_v1.html.attrList,
+            '这里是buttons',
+        ),
+    ],
+)
+// Patch into empty DOM element – this modifies the DOM as a side effect
+patch(container, vnode);
+
+
+function clickHandle() {
+    console.warn('触发click事件了')
+}
+
 
 /**
 const vnode = render(
@@ -62,31 +87,4 @@ const vnode = render(
         )
     ]
 )
-
  */
-
- const vnode = render(
-    'div#container.two.classes', 
-    {
-        on: {
-            click: clickHandle
-        },
-    },
-    [
-        '这里是div',
-        render(
-            Button_v1.html.name,
-            Button_v1.html.attrList,
-            '这里是buttons',
-        ),
-    ],
-    
-    
- )
-// Patch into empty DOM element – this modifies the DOM as a side effect
-patch(container, vnode);
-
-
-function clickHandle() {
-    console.warn('触发click事件了')
-}

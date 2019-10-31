@@ -12,7 +12,6 @@ const ButtonComponent = {
     
             },
         },
-        
     },
 
     data() {
@@ -20,7 +19,6 @@ const ButtonComponent = {
             text: '按钮文案'
         }
     },
-    
 
     mounted() {
         console.log('按钮组件加载完成了')
