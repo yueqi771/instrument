@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material/base": "^3.1.0",
+    "@material/chips": "^3.2.0",
     "layui-src": "^2.5.5",
     "snabbdom": "^0.7.3"
   },

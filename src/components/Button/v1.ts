@@ -1,6 +1,6 @@
 const ButtonComponent = {
     html: {
-        name: "button.layui-btn",
+        name: "button.mdc-button.mdc-button--dense	",
         attrList: {
             class: {
 
