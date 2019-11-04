@@ -11,8 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "@material/base": "^3.1.0",
+    "@material/button": "^4.0.0",
     "@material/chips": "^3.2.0",
+    "@material/dialog": "^4.0.0",
+    "@material/icon-button": "^4.0.0",
+    "@material/select": "^4.0.0",
     "layui-src": "^2.5.5",
+    "material-components-web": "^4.0.0",
     "snabbdom": "^0.7.3"
   },
   "devDependencies": {

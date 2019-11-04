@@ -1,28 +1,30 @@
 
-import { patch, render } from './core/render'
+import { patch, render } from './core/patch'
 import Button_v1 from './components/Button/v1'
 import Select_v1 from './components/Select/v1'
-import { MDCChipSet } from '@material/chips';
-import ParseHtml from './core/parseHtml'
+// import { MDCChipSet } from '@material/chips';
+import ParseHtml from './core/parse/parseHtml'
+import Optimize from './core/parse/optimize'
+// import 'material-components-web/dist/material-components-web.css'
+import { MDCIconButtonToggle } from '@material/icon-button'
+
+const mdc = require('material-components-web')
+
+mdc.autoInit()
+
+
+
 
 console.log('select组件', Select_v1.html.replace(/\s/ig,''))
-const str =  Select_v1.html.trim()
+const str =  Button_v1.html.trim()
+const parseHtml = new ParseHtml(str);
+const optimize = new Optimize(parseHtml.astData, render)
+console.log(optimize)
 
-const parseHtml = new ParseHtml(str)
-
-console.log(parseHtml)
-// layui.use(['layer', 'form'], function(){
-//     var layer = layui.layer
-//     ,form = layui.form;
-    
-//     layer.msg('Hello World');
-// });
-
-{/* <button type="button" class="layui-btn">一个标准的按钮</button>
-<a href="http://www.layui.com" class="layui-btn">一个可跳转的按钮</a> */}
+console.log('onode', optimize.createElement([optimize.astData], render))
 
 const container = document.getElementById('container');
-
+const onode = optimize.createElement([optimize.astData], render)
 
 const vnode = render(
     'div#container.two.classes', 
@@ -32,24 +34,17 @@ const vnode = render(
         },
     },
     [
-        '这里是div',
-        render(
-            Button_v1.html.name,
-            Button_v1.html.attrList,
-            '这里是buttons',
-        ),
-        render(
-            'div.mdc-chip-set',
-            [
-                '123123',
-            ]
-        )
+        // optimize.createElement()
     ],
 )
-// Patch into empty DOM element – this modifies the DOM as a side effect
-patch(container, vnode);
 
-console.log(MDCChipSet)
+console.log('vnode', vnode)
+// Patch into empty DOM element – this modifies the DOM as a side effect
+patch(container, onode[0]);
+
+const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-icon-button'));
+      iconToggle.unbounded = true
+
 
 function clickHandle() {
     console.warn('触发click事件了')
