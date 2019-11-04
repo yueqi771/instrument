@@ -15,9 +15,8 @@ mdc.autoInit()
 
 
 
-console.log('select组件', Select_v1.html.replace(/\s/ig,''))
-const str =  Button_v1.html.trim()
-const parseHtml = new ParseHtml(str);
+const ButtonComponent =  Button_v1.html.trim()
+const parseHtml = new ParseHtml(ButtonComponent);
 const optimize = new Optimize(parseHtml.astData, render)
 console.log(optimize)
 
@@ -34,26 +33,30 @@ const vnode = render(
         },
     },
     [
-        // optimize.createElement()
+        render(
+            'button.mdc-button.mdc-button--unelevated',
+            "12312"
+        )
     ],
 )
 
 console.log('vnode', vnode)
-// Patch into empty DOM element – this modifies the DOM as a side effect
-patch(container, onode[0]);
 
-const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-icon-button'));
+// Patch into empty DOM element – this modifies the DOM as a side effect
+patch(container, vnode);
+
+const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-button'));
       iconToggle.unbounded = true
 
 
 function clickHandle() {
     console.warn('触发click事件了')
     // window['mdc'].button.MDCButton.attachTo(document.querySelector('.mdc-button'));
-    const chipSetEl = document.querySelector('.mdc-chip-set');
+    // const chipSetEl = document.querySelector('.mdc-chip-set');
 
-    const chipSet = new MDCChipSet(chipSetEl);
+    // const chipSet = new MDCChipSet(chipSetEl);
 
-    console.log(chipSet)
+    // console.log(chipSet)
 
 }
 

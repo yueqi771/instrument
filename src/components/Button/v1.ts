@@ -2,14 +2,11 @@
 
 const ButtonComponent = {
     html: `
-    <button id="add-to-favorites"
-        class="mdc-icon-button"
-        aria-label="Add to favorites"
-        aria-hidden="true"
-        aria-pressed="false">
-        <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">favorite</i>
-        <i class="material-icons mdc-icon-button__icon">favorite_border</i>
-    </button>
+        <div class="asdf">
+            <button class="mdc-button">
+                Learn More
+            </button>
+        </div>
     `,
    
     data() {
