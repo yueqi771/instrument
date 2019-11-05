@@ -43,7 +43,7 @@ console.log('vnode', vnode)
 patch(container, onode[0]);
 
 const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-icon-button'));
-      iconToggle.unbounded = true
+iconToggle.unbounded = true
 
 
 function clickHandle() {
