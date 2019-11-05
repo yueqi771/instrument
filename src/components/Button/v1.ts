@@ -2,11 +2,11 @@
 
 const ButtonComponent = {
     html: `
-        <div class="asdf">
-            <button class="mdc-button">
-                Learn More
-            </button>
-        </div>
+        <p uk-margin>
+            <a class="uk-button uk-button-default" href="#">Link</a>
+            <button class="uk-button uk-button-default">Button</button>
+            <button class="uk-button uk-button-default" disabled>Disabled</button>
+        </p>
     `,
    
     data() {

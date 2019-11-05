@@ -76,14 +76,13 @@ class Optimize {
 
 			// 如果存在嵌套关系, 递归执行此方法
 			if (item.children && item.children.length > 0) {
-                console.log('createElement',)
 				return createElement(item.html, item.attrList, [
 					text,
 					...this.createElement(item.children, createElement)
 				])
 			} else {
 				// 如果只有一层接口， 不存在嵌套的话， 直接return
-				return createElement(item.tag, item.attrList, [text])
+				return createElement(item.html, item.attrList, [text])
 			}
 		})
     }

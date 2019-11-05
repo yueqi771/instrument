@@ -23,6 +23,7 @@ console.log(optimize)
 console.log('onode', optimize.createElement([optimize.astData], render))
 
 const container = document.getElementById('container');
+console.log('astData', optimize.astData)
 const onode = optimize.createElement([optimize.astData], render)
 
 const vnode = render(
@@ -33,20 +34,24 @@ const vnode = render(
         },
     },
     [
+    //     <p uk-margin>
+    //     <a class="uk-button uk-button-default" href="#">Link</a>
+    //     <button class="uk-button uk-button-default">Button</button>
+    //     <button class="uk-button uk-button-default" disabled>Disabled</button>
+    // </p>
         render(
-            'button.mdc-button.mdc-button--unelevated',
+            'a.uk-button.uk-button-default',
             "12312"
         )
     ],
 )
 
-console.log('vnode', vnode)
 
 // Patch into empty DOM element – this modifies the DOM as a side effect
-patch(container, vnode);
+patch(container, onode[0]);
 
-const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-button'));
-      iconToggle.unbounded = true
+// const iconToggle = new MDCIconButtonToggle(document.querySelector('.mdc-button'));
+//       iconToggle.unbounded = true
 
 
 function clickHandle() {
