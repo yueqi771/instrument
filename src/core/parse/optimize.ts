@@ -58,7 +58,6 @@ class Optimize {
      */
     codgen(node: AstData.nodeData) {
         console.log('codgenNode', node)
-        debugger
 
         const id = node.attrList.id ? '#'+node.attrList.id : '';
         const classState = node.attrList.class ? `.${node.attrList.class.split(' ').join('.')}` : '';

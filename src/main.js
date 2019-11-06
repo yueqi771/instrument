@@ -16,8 +16,12 @@ const Card = Card_V1.html.trim()
 // Select组件
 const Select = Select_v1.html.trim()
 
+debugger
+
 const parseHtml = new ParseHtml(Select);
+
 const optimize = new Optimize(parseHtml.astData, render)
+
 
 console.log('onode', optimize.createElement([optimize.astData], render))
 
