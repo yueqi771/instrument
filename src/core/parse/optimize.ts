@@ -58,11 +58,19 @@ class Optimize {
      */
     codgen(node: AstData.nodeData) {
         console.log('codgenNode', node)
+        debugger
+
         const id = node.attrList.id ? '#'+node.attrList.id : '';
         const classState = node.attrList.class ? `.${node.attrList.class.split(' ').join('.')}` : '';
 
         node.html = `${node.tag}${id}${classState}`
         delete node.attrList.class
+
+        let nodeProps = this.widgets.deepClone(node.attrList);
+
+        if(!node.attrList.props){
+            node.attrList.props = nodeProps
+        }
     }
 
 

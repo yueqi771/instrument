@@ -9,6 +9,7 @@ interface nodeData {
     attrList?: any
     children?: nodeData[],
     text?: string,
+    props?: any,
 }
 
 export { initialAst, nodeData }
