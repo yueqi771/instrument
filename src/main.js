@@ -16,8 +16,6 @@ const Card = Card_V1.html.trim()
 // Select组件
 const Select = Select_v1.html.trim()
 
-debugger
-
 const parseHtml = new ParseHtml(Select);
 
 const optimize = new Optimize(parseHtml.astData, render)
@@ -29,15 +27,32 @@ const container = document.getElementById('container');
 const vnode = optimize.createElement([optimize.astData], render)
 
 const testNode = render(
-    'div#container.two.classes', 
+    'div', 
     {
+        attrs: {
+            "attrs": '12233'
+        },
+        
+        props: {
+            "width": "1200"
+        },
         on: {
             click: clickHandle
         },
     },
     [
-  
+        render(
+            "a",
+            {
+                dataset: {
+                    'ction': '111'
+                }
+            },
+
+            "这里是a标签"
+        )
     ],
+    "content"
 )
 
 

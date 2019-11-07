@@ -37,6 +37,7 @@ class Optimize {
 			count: number = 0,
 			nodeData: any =  node;
 
+        
 		while(nodeData != null) {
 			callBack && (callBack.apply(_this, [nodeData, count]));
 
@@ -58,6 +59,7 @@ class Optimize {
      */
     codgen(node: AstData.nodeData) {
         console.log('codgenNode', node)
+        const attrs = [""];
 
         const id = node.attrList.id ? '#'+node.attrList.id : '';
         const classState = node.attrList.class ? `.${node.attrList.class.split(' ').join('.')}` : '';
@@ -67,8 +69,8 @@ class Optimize {
 
         let nodeProps = this.widgets.deepClone(node.attrList);
 
-        if(!node.attrList.props){
-            node.attrList.props = nodeProps
+        if(!node.attrList.attrs){
+            node.attrList.attrs = nodeProps
         }
     }
 
