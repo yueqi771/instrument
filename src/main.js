@@ -1,11 +1,30 @@
 
 import { patch, render } from './core/patch'
+import componentList from './common/componentList'
 import Button_v1 from './components/Button/v1'
 import Select_v1 from './components/Select/v1'
 import Div_v1 from './components/Div/v1'
 import Card_V1 from './components/Card/v1'
 import ParseHtml from './core/parse/parseHtml'
 import Optimize from './core/parse/optimize'
+
+console.log(componentList)
+
+let children = [];
+componentList.map((item, index) => {
+    const component = item.component.html.trim();
+
+    const parseHtml = new ParseHtml(component);
+
+    const optimize = new Optimize(parseHtml.astData, render);
+
+    const vnode = optimize.createElement([optimize.astData], render)
+
+
+    children.push(vnode[0])
+})
+
+console.log(children)
 
 // button组件
 const ButtonComponent =  Button_v1.html.trim()
@@ -40,24 +59,13 @@ const testNode = render(
             click: clickHandle
         },
     },
-    [
-        render(
-            "a",
-            {
-                dataset: {
-                    'ction': '111'
-                }
-            },
-
-            "这里是a标签"
-        )
-    ],
+    children,
     "content"
 )
 
 
 // Patch into empty DOM element – this modifies the DOM as a side effect
-const app = patch(container, vnode[0]);
+const app = patch(container, testNode);
 
 function clickHandle() {
     console.warn('触发click事件了')
