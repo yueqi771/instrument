@@ -9,13 +9,22 @@ module.exports = {
 
     },
     resolve: {
-        extensions: ['.js', '.json'],
+        extensions: ['.js', '.json', '.ts'],
         alias: {
-         
+            "@core": path.resolve(__dirname, '../src/core'),
+            "@components": path.resolve(__dirname, '../src/components'),
+			"@utils": path.resolve(__dirname, '../src/utils'),
+			"@interface": path.resolve(__dirname, '../src/interface')
+
         }
     },
     module: {
         rules: [
+			{
+				test: /\.ts$/,
+				use: 'ts-loader',
+				exclude: /node_modules/,
+			},
             {
 				test: /\.js$/,
 				loader: "babel-loader",
