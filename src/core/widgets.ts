@@ -11,7 +11,7 @@ class Widgets {
 
     constructor() {
         // 初始化化类型验证函数
-		this.initTypeVerifiy(this.typeArray); ; 
+		this.initTypeVerifiy(this.typeArray); ;  ;
 
     }
 

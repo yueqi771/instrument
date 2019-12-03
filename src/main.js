@@ -16,6 +16,9 @@ componentList.map((item, index) => {
 
     const parseHtml = new ParseHtml(component);
 
+    // 解析for循环
+    parseFor(parseHtml)
+
     const optimize = new Optimize(parseHtml.astData, render);
 
     const vnode = optimize.createElement([optimize.astData], render)
@@ -24,7 +27,13 @@ componentList.map((item, index) => {
     children.push(vnode[0])
 })
 
-console.log(children)
+/**
+ * @function 解析for指令
+ */
+function parseFor() {
+
+}
+
 
 // button组件
 const ButtonComponent =  Button_v1.html.trim()

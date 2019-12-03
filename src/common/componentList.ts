@@ -5,25 +5,25 @@ import Card_v1 from '../components/Card/v1'
 
 const componentList: any[] = [
     {
-        name: "按钮组件",
+        name: "选择器组件",
         version: ["v1"],
         component: Select_v1,
     },
-    {
-        name: "按钮组件",
-        version: ["v1"],
-        component: Button_v1,
-    },
-    {
-        name: "按钮组件",
-        version: ["v1"],
-        component: Card_v1,
-    },
-    {
-        name: "按钮组件",
-        version: ["v1"],
-        component: Div_v1,
-    },
+    // {
+    //     name: "按钮组件",
+    //     version: ["v1"],
+    //     component: Button_v1,
+    // },
+    // {
+    //     name: "按钮组件",
+    //     version: ["v1"],
+    //     component: Card_v1,
+    // },
+    // {
+    //     name: "按钮组件",
+    //     version: ["v1"],
+    //     component: Div_v1,
+    // },
     
 ]
 
