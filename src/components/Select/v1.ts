@@ -1,5 +1,5 @@
 const SelectComponent = {
-    html:`<div uk-form-custom="target: > * > span:first-child">
+    html:`<div ifor="item in [1, 2, 3]" uk-form-custom="target: > * > span:first-child">
             <select>
                 <option value="">Please select...</option>
                 <option value="1">Option 01</option>

@@ -16,8 +16,8 @@ class ParseHtml {
     // dom解析后存放的栈
     stack: any[] = [];
 
-      // 当前解析的html字符串
-      private _html: string = "";
+    // 当前解析的html字符串
+    private _html: string = "";
 
 
     constructor(html: string) {
@@ -46,6 +46,8 @@ class ParseHtml {
                     this.parseEndTag(endTagMatch[1], this._index, this._index)
                     continue
                 }
+                debugger
+
                 const startTageMatch = this.parseStartTag(this._html, 0)
                 this.handleStartTag(startTageMatch)
                 if(this.matchLine(startTageMatch.tagName, this._html)) {
