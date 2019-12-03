@@ -31,6 +31,7 @@ class ParseHtml {
 
     /**
      * @func 循环解析html
+     * @params
      */
     startParse() {
         let text, rest, next;
