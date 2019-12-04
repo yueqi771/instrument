@@ -47,8 +47,7 @@ class ParseHtml {
                     this.parseEndTag(endTagMatch[1], this._index, this._index)
                     continue
                 }
-                debugger
-
+   
                 const startTageMatch = this.parseStartTag(this._html, 0)
                 this.handleStartTag(startTageMatch)
                 if(this.matchLine(startTageMatch.tagName, this._html)) {
@@ -96,8 +95,10 @@ class ParseHtml {
         for(position = this.stack.length - 1; position >= 0; position --) {
             if(position === 0) { return }   
 
+            // 处理层级关系
             let children = this.stack[position - 1].children;
-
+            
+            // 将新解析的标签放到之前没有匹配到结尾标签的元素里面
             children ? 
                 this.stack[position - 1].children.push(this.stack[position]) 
                 : 
@@ -177,10 +178,13 @@ class ParseHtml {
 
         const attrList = this.formatAttr(attrs);
 
-        this.stack.push({ 
+        const nodeData = { 
             tag: tagName, 
             attrList
-        })
+        }
+        this.stack.push(nodeData)
+
+        this.parseForDirective(nodeData);
     }
 
     /**
@@ -197,7 +201,7 @@ class ParseHtml {
      */
     getAttrValue(value: string, shouldDecodeNewlines: boolean) {
         const reg = shouldDecodeNewlines ? Regexp.encodedAttrWithNewLines : Regexp.encodedAttr
-        return value .replace(reg, match => (Regexp as any).decodingMap[match])
+        return value.replace(reg, match => (Regexp as any).decodingMap[match])
     }
 
      /**
@@ -220,6 +224,30 @@ class ParseHtml {
         return result
     }
 
+    /**
+     * 解析for指令
+     */
+    parseForDirective(node: ParseHTMLTypes.NodeType,) {
+        console.log(node)
+        // 获取for循环指令的属性， 并且移除它
+        
+    }
+
+    /**
+     * @func 获取属性列表中的for循环指令
+     * 
+     */
+    getAndRemoveAttr(node: Node,  attr: string) {
+        if(!node.attrList[attr]) { return; }
+
+        let val = "";
+        val = node.attrList[attr]；
+        node.attrList[attr].map((item, index) => {
+            // 把这个属性从属性列表中移除
+        })
+
+        return val
+    }
 }
 
 export default ParseHtml

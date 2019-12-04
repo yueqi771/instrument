@@ -58,7 +58,7 @@ class Optimize {
      * @func 解析ast数据
      */
     codgen(node: AstData.nodeData) {
-        console.log('codgenNode', node)
+        // console.log('codgenNode', node)
         const attrs = [""];
 
         const id = node.attrList.id ? '#'+node.attrList.id : '';
