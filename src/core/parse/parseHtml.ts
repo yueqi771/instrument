@@ -230,6 +230,8 @@ class ParseHtml {
     parseForDirective(node: ParseHTMLTypes.NodeType,) {
         console.log(node)
         // 获取for循环指令的属性， 并且移除它
+        const res = this.getAndRemoveAttr(node, 'ifor')
+        console.log(res)
         
     }
 
@@ -237,14 +239,14 @@ class ParseHtml {
      * @func 获取属性列表中的for循环指令
      * 
      */
-    getAndRemoveAttr(node: Node,  attr: string) {
+    getAndRemoveAttr(node: ParseHTMLTypes.NodeType,  attr: any) {
         if(!node.attrList[attr]) { return; }
 
         let val = "";
-        val = node.attrList[attr]；
-        node.attrList[attr].map((item, index) => {
-            // 把这个属性从属性列表中移除
-        })
+        val = node.attrList[attr];
+
+        delete node.attrList[attr];
+       
 
         return val
     }
