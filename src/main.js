@@ -8,8 +8,6 @@ import Card_V1 from './components/Card/v1'
 import ParseHtml from './core/parse/parseHtml'
 import Optimize from './core/parse/optimize'
 
-console.log(componentList)
-
 let children = [];
 componentList.map((item, index) => {
     const component = item.component.html.trim();
@@ -44,15 +42,15 @@ const Card = Card_V1.html.trim()
 // Select组件
 const Select = Select_v1.html.trim()
 
-const parseHtml = new ParseHtml(Select);
+// const parseHtml = new ParseHtml(Select);
 
-const optimize = new Optimize(parseHtml.astData, render)
+// const optimize = new Optimize(parseHtml.astData, render)
 
 
-console.log('onode', optimize.createElement([optimize.astData], render))
+// console.log('onode', optimize.createElement([optimize.astData], render))
 
 const container = document.getElementById('container');
-const vnode = optimize.createElement([optimize.astData], render)
+// const vnode = optimize.createElement([optimize.astData], render)
 
 const testNode = render(
     'div', 

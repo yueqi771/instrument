@@ -20,4 +20,11 @@ interface StackType {
     children: StackType[]
 }
 
-export { MachHtml, StackType }
+interface NodeType {
+    tag: string; 
+    attrList: any[];
+    text?: string,
+    children?: StackType[]
+}
+
+export { MachHtml, StackType, NodeType }
