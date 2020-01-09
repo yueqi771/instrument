@@ -24,7 +24,10 @@ interface NodeType {
     tag: string; 
     attrList: any[];
     text?: string,
-    children?: StackType[]
+    children?: StackType[],
+    for?: string;
+    alias?: string;
+    iterator1?: string,
 }
 
 export { MachHtml, StackType, NodeType }

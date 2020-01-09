@@ -13,6 +13,8 @@ const Regexp = {
     endTag: new RegExp(`^<\\/${qnameCapture}[^>]*>`),
     encodedAttr: /&(?:lt|gt|quot|amp|#39);/g,
     encodedAttrWithNewLines: /&(?:lt|gt|quot|amp|#39|#10|#9);/g,
+    forAlias: /([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/,
+    forIterator: /,([^,\}\]]*)(?:,([^,\}\]]*))?$/,
     decodingMap: {
         '&lt;': '<',
         '&gt;': '>',

@@ -177,14 +177,14 @@ class ParseHtml {
         }
 
         const attrList = this.formatAttr(attrs);
-
-        const nodeData = { 
+        let nodeData: any = { 
             tag: tagName, 
             attrList
         }
-        this.stack.push(nodeData)
+        
+        nodeData = this.parseForDirective(nodeData);
 
-        this.parseForDirective(nodeData);
+        this.stack.push(nodeData)
     }
 
     /**
@@ -228,8 +228,36 @@ class ParseHtml {
      * 解析for指令
      */
     parseForDirective(node: ParseHTMLTypes.NodeType,) {
-        console.log(node)
         // 获取for循环指令的属性， 并且移除它
+        const res = this.getAndRemoveAttr(node, 'ifor')
+        if(res) {
+            const match: any = res.match(Regexp.forAlias)
+            let result: any = {}
+
+            if(!match) { return }
+
+            result.for = match[2].trim();
+            const alias = match[1].trim().replace(/^\(|\)$/g, '');
+            const iteratorMatch = alias.match(Regexp.forIterator);
+
+            if(iteratorMatch) {
+                result.alias = alias.replace(Regexp.forIterator, '').trim();
+                result.iterator1 = iteratorMatch[1].trim();
+                if (iteratorMatch[2]) {
+                    result.iterator2 = iteratorMatch[2].trim();
+                }
+            }else {
+                result.alias = alias
+            }
+
+
+            // 将遍历出来的东西放到stack里面
+            node = { ...node , ...result};
+
+            return node
+        }
+
+        return node
         
     }
 
@@ -237,14 +265,14 @@ class ParseHtml {
      * @func 获取属性列表中的for循环指令
      * 
      */
-    getAndRemoveAttr(node: Node,  attr: string) {
+    getAndRemoveAttr(node: ParseHTMLTypes.NodeType,  attr: any) {
         if(!node.attrList[attr]) { return; }
 
         let val = "";
-        val = node.attrList[attr]；
-        node.attrList[attr].map((item, index) => {
-            // 把这个属性从属性列表中移除
-        })
+        val = node.attrList[attr];
+
+        delete node.attrList[attr];
+       
 
         return val
     }
