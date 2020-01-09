@@ -7,15 +7,13 @@ import Div_v1 from './components/Div/v1'
 import Card_V1 from './components/Card/v1'
 import ParseHtml from './core/parse/parseHtml'
 import Optimize from './core/parse/optimize'
+import Instrument from './core/index'
 
 let children = [];
 componentList.map((item, index) => {
     const component = item.component.html.trim();
 
     const parseHtml = new ParseHtml(component);
-
-    // 解析for循环
-    parseFor(parseHtml)
 
     const optimize = new Optimize(parseHtml.astData, render);
 
@@ -25,14 +23,7 @@ componentList.map((item, index) => {
     children.push(vnode[0])
 })
 
-/**
- * @function 解析for指令
- */
-function parseFor() {
-
-}
-
-
+window.instance = {}
 // button组件
 const ButtonComponent =  Button_v1.html.trim()
 // div组件
@@ -41,6 +32,11 @@ const DivComponent = Div_v1.html.trim()
 const Card = Card_V1.html.trim()
 // Select组件
 const Select = Select_v1.html.trim()
+
+// 初始化解析引擎
+console.log(Select_v1)
+console.log(Instrument)
+const instrument = new Instrument(Select_v1)
 
 // const parseHtml = new ParseHtml(Select);
 
