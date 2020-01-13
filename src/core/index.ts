@@ -81,7 +81,7 @@ class Instrument {
         if(this.hasOwn(data, '__ob__')) {
             ob = data.__ob__
         }else {
-            ob = new Observer()
+            ob = new Observer(data)
         }
 
 
