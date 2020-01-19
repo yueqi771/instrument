@@ -76,7 +76,6 @@ class Observer {
             },
 
             set: function reactiveSetter(newValue) {
-                // test submit
                 const value = getter ? getter.call(obj) : (window as any).val;
 
                 if(newValue === value) {
