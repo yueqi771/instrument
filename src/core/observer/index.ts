@@ -41,12 +41,57 @@ class Observer {
     walk(data: Object) {
         let keys = Object.keys(data);
         for(let i = 0; i < keys.length; i++){
-            this.defineReactive()
+            this.defineReactive(data, keys[i])
         }
     }
 
-    defineReactive() {
-        
+    defineReactive(obj: any, key: string, val?: any, ) {
+        const dep = new Dep()
+        let property = Object.getOwnPropertyDescriptor(obj, key);
+
+        // 如果属性存在并且暑期属性的可读写选项不为false, 那么直接return
+        if(property && property.configurable === false) {
+            return
+        }
+
+        const getter = property && property.get
+        const setter = property && property.set
+
+        if((!getter || setter) && arguments.length === 2) {
+            (window as any).val = obj[key]
+        }
+
+        // 如果存在嵌套关系， 那么递归吊用
+        Object.defineProperty(obj, key, {
+            enumerable: true, 
+            configurable: true, 
+            get: function reactiveGetter() {
+                const value = getter ? getter.call(obj) : (window as any).val;
+
+                if(dep.target) {
+                    dep.depend()
+                }
+
+                return value
+            },
+
+            set: function reactiveSetter(newValue) {
+                const value = getter ? getter.call(obj) : (window as any).val;
+
+                if(newValue === value) {
+                    return
+                }
+
+                if(getter && !setter) { return }
+                if(setter) {
+                    setter.call(obj, newValue)
+                }else {
+                    val = newValue
+                }
+
+                dep.notify()
+            }
+        })
     }
 }
 

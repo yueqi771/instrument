@@ -8,9 +8,12 @@ import Observer from '../core/observer/index'
  */
 class Instrument {
     widgets: Widgets
+    _data: any
     constructor(component: any) {
         this.widgets = new Widgets();
         // 执行init方法， 初始化组件的数据， 初始话组件的声明周期
+        debugger
+        this._data = component.data
         this.init(component)
     }
 
@@ -41,6 +44,7 @@ class Instrument {
         }
 
         this.observer(data)
+        console.log(data)
         console.log((window as any).instance)
     }
 
@@ -55,8 +59,9 @@ class Instrument {
             get: () => {},
             set: () => {}
         }
-        sharedPropertyDefinition.get = function() {
-            return (this as any)[sourceKey][key]
+        sharedPropertyDefinition.get = () => {
+            console.log('访问数据', this)
+            return _this[sourceKey][key]
         }
 
         sharedPropertyDefinition.set = () => {
@@ -71,7 +76,8 @@ class Instrument {
      */
     observer(data: any) {
         // 判断是否为对象
-        if(!this.widgets.TypeContent.isArray(data) || !this.widgets.TypeContent.isObject(data) ) {
+        console.log('type', this.widgets.TypeContent.isObject(data))
+        if(!this.widgets.TypeContent.isArray(data) && !this.widgets.TypeContent.isObject(data) ) {
             return
         }
 
@@ -83,9 +89,8 @@ class Instrument {
         }else {
             ob = new Observer(data)
         }
-
-
         
+        return ob
     }
 
     /**
