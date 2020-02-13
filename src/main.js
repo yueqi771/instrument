@@ -23,7 +23,16 @@ componentList.map((item, index) => {
     children.push(vnode[0])
 })
 
-window.instance = {}
+window.instance = {
+    // 更新函数队列
+    queen: [],
+    id: 0,
+    // 是否进行更新
+    pending: false,
+
+    _data: {}
+    // dai
+}
 // button组件
 const ButtonComponent =  Button_v1.html.trim()
 // div组件

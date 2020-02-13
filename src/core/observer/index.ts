@@ -68,7 +68,9 @@ class Observer {
             get: function reactiveGetter() {
                 const value = getter ? getter.call(obj) : (window as any).val;
 
-                if(dep.target) {
+                // 备份
+                (window as any).val = value;
+                if(dep.target) { 
                     dep.depend()
                 }
 
@@ -81,12 +83,12 @@ class Observer {
                 if(newValue === value) {
                     return
                 }
-
+                debugger
                 if(getter && !setter) { return }
                 if(setter) {
                     setter.call(obj, newValue)
                 }else {
-                    val = newValue
+                    (window as any).val = newValue
                 }
 
                 dep.notify()

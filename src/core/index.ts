@@ -12,7 +12,6 @@ class Instrument {
     constructor(component: any) {
         this.widgets = new Widgets();
         // 执行init方法， 初始化组件的数据， 初始话组件的声明周期
-        debugger
         this._data = component.data
         this.init(component)
     }
@@ -40,12 +39,11 @@ class Instrument {
         while(i--) {
             const key = keys[i]
             console.log('key', key)
-            this.proxy((window as any).instance, '_data', key)
+            this.proxy((window as any).instance._data, '_data', key)
         }
 
-        this.observer(data)
-        console.log(data)
-        console.log((window as any).instance)
+        this.observer((window as any).instance._data)
+        console.log((window as any).instance._data)
     }
 
     /**
@@ -57,15 +55,15 @@ class Instrument {
             enumerable: true,
             configurable: true,
             get: () => {},
-            set: () => {}
+            set: (val: any) => {}
         }
         sharedPropertyDefinition.get = () => {
             console.log('访问数据', this)
             return _this[sourceKey][key]
         }
 
-        sharedPropertyDefinition.set = () => {
-            _this[sourceKey][key] = (window as any).val
+        sharedPropertyDefinition.set = (val: any) => {
+            _this[sourceKey][key] = val
         }
 
         Object.defineProperty(target, key, sharedPropertyDefinition)

@@ -1,3 +1,5 @@
+import Watcher from './watcher'
+
 class Dep {
     // dep实例的id
     id: number = 0
@@ -5,10 +7,10 @@ class Dep {
     // 存储通知对象的回调函数
     subs: Array<any> = []
 
-    target: any
+    target: Watcher<any>
 
     constructor() {
-
+        this.target = new Watcher(() => {}) 
     }
 
     /**
